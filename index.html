@@ -3,220 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shashwat's Android Apps</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <title>Website Directory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        :root {
+            --primary: #030711;
+            --secondary: #0f172a;
+            --accent: #a67c00;
+            --gold: #d4af37;
+            --text: #fff;
+            --background: linear-gradient(135deg, #030711 0%, #0f172a 100%);
+        }
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom right, #4a1d96, #312e81);
-            color: white;
-            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--background);
+            color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 4rem 2rem;
         }
 
-        header {
-            padding: 3rem 0;
+        .header {
             text-align: center;
-        }
-
-        h1 {
-            font-size: 2.25rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #a78bfa, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: #e9d5ff;
-        }
-
-        main {
+            margin-bottom: 6rem;
+            position: relative;
             padding: 3rem 0;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            filter: blur(40px);
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 3rem;
+            perspective: 1000px;
         }
 
         .card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
-            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
-            transition: transform 0.5s;
-            display: flex;
-            flex-direction: column;
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, 
+                                    rgba(255, 255, 255, 0.1), 
+                                    transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px) rotateX(2deg);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                       0 0 20px rgba(166, 124, 0, 0.1);
         }
 
-        .card-image {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-image img {
-            width: 6rem;
-            height: 6rem;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card h2 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.75rem;
-            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            font-weight: 600;
         }
 
         .card p {
-            margin-bottom: 1.5rem;
-            text-align: center;
-            color: #e9d5ff;
-            flex-grow: 1;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: bold;
-            text-align: center;
+        .features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .features li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            font-weight: 300;
+        }
+
+        .features li::before {
+            content: '•';
+            color: var(--gold);
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: auto;
+        }
+
+        .button {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
             text-decoration: none;
-            transition: all 0.3s;
-            margin-top: 0.75rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(to right, #9333ea, #db2777);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: linear-gradient(to right, #3b82f6, #4f46e5);
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-0.25rem);
-            opacity: 0.9;
-        }
-
-        footer {
-            padding: 2rem 0;
+            font-weight: 500;
             text-align: center;
-            color: #e9d5ff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
         }
 
-        @media (min-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .visit-button {
+            background: linear-gradient(135deg, var(--gold), #8b6b00);
+            color: var(--primary);
+            border: none;
+        }
 
-            h1 {
+        .download-button {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(166, 124, 0, 0.3);
+        }
+
+        .visit-button:hover {
+            background: linear-gradient(135deg, #d4af37, #a67c00);
+        }
+
+        .download-button:hover {
+            background: rgba(166, 124, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
                 font-size: 3rem;
             }
 
-            .subtitle {
-                font-size: 1.5rem;
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .grid {
+                gap: 2rem;
+            }
+
+            .card {
+                padding: 2rem;
             }
         }
 
-        @media (min-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        /* Elegant Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Shashwat's Revolutionary Android Apps</h1>
-            <p class="subtitle">Experience ad-free performance like never before!</p>
+        <header class="header">
+            <h1>Shashwat's Portfolio</h1>
+            <p>A curated collection of premium digital experiences</p>
         </header>
-        <main>
-            <div class="grid">
-                <!-- S-Cloud (Jio) -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="logo.jpg" alt="S-Cloud (Jio) Logo">
-                    </div>
-                    <h2>Scodify</h2>
-                    <p>A revolutionary music streaming app using Jio's large server for songs. Enjoy ad-free music with the unique Line Lofi feature.</p>
-                    <a href="https://github.com/Shashwat-CODING/S-CODERS-Studio/releases/download/1.1.0/S-cloud_saavn.apk" class="btn btn-primary">Download Now</a>
-                    <a href="https://scodify236.github.io/scodify" class="btn btn-secondary">Visit Website</a>
-                </div>
-                <!-- S-Cloud (YouTube) -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="logo1.webp" alt="S-Cloud (YouTube) Logo">
-                    </div>
-                    <h2>Raag Heaven</h2>
-                    <p>Access the largest music server based on YouTube. Stream your favorite tunes without any ads interrupting your experience.</p>
-                    <a href="https://github.com/Shashwat-CODING/S-CODERS-Studio/releases/download/1.1.0/s-cloud_yt.apk" class="btn btn-primary">Download Now</a>
-                    <a href="https://shcloud.netlify.app" class="btn btn-secondary">Visit Website</a>
-                </div>
-                <!-- S-Tube -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="logo2.webp" alt="S-Tube Logo">
-                    </div>
-                    <h2>Trishul-Tube</h2>
-                    <p>A YouTube-based video streaming application that offers an ad-free viewing experience. Watch your favorite content uninterrupted.</p>
-                    <a href="https://github.com/Shashwat-CODING/S-CODERS-Studio/releases/download/1.1.0/s-tube.apk" class="btn btn-primary">Download Now</a>
-                    <a href="https://s-tube.netlify.app" class="btn btn-secondary">Visit Website</a>
-                </div>
-                <!-- S-Stock -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="logo3.webp" alt="S-Stock Logo">
-                    </div>
-                    <h2>Trishul-ERP</h2>
-                    <p>It is a comprehensive billing and stock management platform that streamlines financial transactions and inventory control for businesses. It features an intuitive interface for creating and managing invoices, allowing users to generate bills in PDF format effortlessly.(Android app coming soon)</p>
-                    <a href="https://stockvid.netlify.app/storyy.mp4" class="btn btn-primary">Watch video</a>
-                    <a href="https://trishul-erp.netlify.app" class="btn btn-secondary">Visit Website</a>
-                </div>
-            <!-- t-mcx -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="logo4.webp" alt="S-Stock Logo">
-                    </div>
-                <h2>Trishul-MCX</h2>
-                    <p>Trishul-MCX is a website that provides real-time insights and data related to commodities trading, particularly focusing on the Multi Commodity Exchange (MCX). The platform offers users a comprehensive view of market trends, price movements, and trading opportunities. With a user-friendly interface and timely updates, it serves as a valuable resource for traders and investors looking to stay informed about commodity markets.(Android app coming soon)</p>
-                    <a href="" class="btn btn-primary">App coming soon</a>
-                    <a href="https://trishul-mcx.netlify.app" class="btn btn-secondary">Visit Website</a>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Trishul MCX</h2>
+                <p>Experience real-time market intelligence with our premium commodity trading platform, delivering precision analytics and comprehensive market insights.</p>
+                <ul class="features">
+                    <li>Real-time premium data streams</li>
+                    <li>Advanced interactive analytics</li>
+                    <li>Refined user experience</li>
+                    <li>Premium ad-free environment</li>
+                </ul>
+                <div class="button-container">
+                    <a href="https://trishul-mcx.netlify.app/" class="button visit-button">Experience Platform</a>
+                    <a href="#" class="button download-button">Download Suite</a>
                 </div>
             </div>
-        </main>
-        <footer>
-            <p>&copy; 2024 Shashwat. All rights reserved.</p>
-        </footer>
+
+            <div class="card">
+                <h2>Trishul ERP</h2>
+                <p>A sophisticated enterprise solution that transforms business operations with intelligent automation and seamless workflow integration.</p>
+                <ul class="features">
+                    <li>Intelligent inventory control</li>
+                    <li>Executive dashboard</li>
+                    <li>Advanced business analytics</li>
+                    <li>Ad free</li>
+                </ul>
+                <div class="button-container">
+                    <a href="https://trishul-erp.netlify.app/" class="button visit-button">Explore Solution</a>
+                    <a href="#" class="button download-button">Download Suite</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Raag Heaven</h2>
+                <p>Immerse yourself in an exclusive music experience featuring pristine audio quality and expertly curated collections across genres.</p>
+                <ul class="features">
+                    <li>Studio-quality audio (320 kbps)</li>
+                    <li>Curated premium library</li>
+                    <li>Exclusive ad-free experience</li>
+                    <li>Sophisticated recommendations</li>
+                </ul>
+                <div class="button-container">
+                    <a href="https://shcloud.netlify.app/" class="button visit-button">Begin Journey</a>
+                    <a href="#" class="button download-button">Download Suite</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>S-Tube</h2>
+                <p>Discover a refined streaming experience with exceptional video quality and intelligently curated content selections and have a large number of videos more than 800 million videos.</p>
+                <ul class="features">
+                    <li>Ad free</li>
+                    <li>Premium HD streaming</li>
+                    <li>Exclusive viewing experience</li>
+                    <li>Elegant responsive design</li>
+                </ul>
+                <div class="button-container">
+                    <a href="https://s-tube.netlify.app/" class="button visit-button">Start Watching</a>
+                    <a href="#" class="button download-button">Download Suite</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>YouTube Audio Downloader</h2>
+                <p>A sophisticated solution for acquiring premium audio content, featuring advanced conversion technology and seamless integration.</p>
+                <ul class="features">
+                    <li>Premium format support</li>
+                    <li>Optimized performance</li>
+                    <li>Refined interface</li>
+                    <li>Premium experience</li>
+                </ul>
+                <div class="button-container">
+                    <a href="https://scodify236.github.io/ytdown/" class="button visit-button">Start Converting</a>
+                    <a href="#" class="button download-button">Download Suite</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Scodify</h2>
+                <p>An exceptional music platform offering pristine audio quality and a carefully curated selection of international compositions.</p>
+                <ul class="features">
+                    <li>Premium audio delivery</li>
+                    <li>Exclusive music collection</li>
+                    <li>Distinguished experience</li>
+                    <li>Refined interface</li>
+                </ul>
+                <div class="button-container">
+                    <a href="https://scodify236.github.io/scodify/" class="button visit-button">Begin Listening</a>
+                    <a href="#" class="button download-button">Download Suite</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
