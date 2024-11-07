@@ -91,7 +91,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             perspective: 1000px;
         }
@@ -228,6 +228,41 @@
             .card {
                 padding: 2rem;
             }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .button {
+                flex: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .card h2 {
+                font-size: 1.8rem;
+            }
+
+            .features li {
+                font-size: 0.9rem;
+            }
+
+            .button {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.8rem;
+            }
         }
 
         /* Elegant Scrollbar */
@@ -317,7 +352,7 @@
                 </ul>
                 <div class="button-container">
                     <a href="https://shcloud.netlify.app/" class="button visit-button">Begin Journey</a>
-                    <a href="#" class="button download-button">Download Suite</a>
+                    <a href="https://github.com/Shashwat-CODING/S-CODERS-Studio/releases/download/1.1.0/s-cloud_yt.apk" class="button download-button">Download Suite</a>
                 </div>
             </div>
 
@@ -332,7 +367,7 @@
                 </ul>
                 <div class="button-container">
                     <a href="https://s-tube.netlify.app/" class="button visit-button">Start Watching</a>
-                    <a href="#" class="button download-button">Download Suite</a>
+                    <a href="https://github.com/Shashwat-CODING/S-CODERS-Studio/releases/download/1.1.0/s-tube.apk" class="button download-button">Download Suite</a>
                 </div>
             </div>
 
@@ -362,7 +397,7 @@
                 </ul>
                 <div class="button-container">
                     <a href="https://scodify236.github.io/scodify/" class="button visit-button">Begin Listening</a>
-                    <a href="#" class="button download-button">Download Suite</a>
+                    <a href="https://github.com/Shashwat-CODING/S-CODERS-Studio/releases/download/1.1.0/S-cloud_saavn.apk" class="button download-button">Download Suite</a>
                 </div>
             </div>
         </div>
